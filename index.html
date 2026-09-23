@@ -73,38 +73,22 @@
         .step-item strong { color: var(--text-main); display: block; margin-bottom: 2px; }
 
         /* =========================================================
-           1 & 2. FILTER KATEGORI (SWIPEABLE DENGAN INDIKATOR FADE)
+           1. FILTER KATEGORI
            ========================================================= */
-        .category-wrapper {
-            position: relative;
-            margin-bottom: 20px;
-            width: 100%;
-        }
-        /* Efek bayangan (fade) di kanan untuk menandakan bisa di-swipe */
+        .category-wrapper { position: relative; margin-bottom: 20px; width: 100%; }
         .category-wrapper::after {
-            content: '';
-            position: absolute;
-            top: 0; right: 0; bottom: 0;
-            width: 40px;
-            background: linear-gradient(to right, rgba(18,18,18,0), rgba(18,18,18,1));
-            pointer-events: none;
+            content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 40px;
+            background: linear-gradient(to right, rgba(18,18,18,0), rgba(18,18,18,1)); pointer-events: none;
         }
-        @media(min-width: 768px) {
-            .category-wrapper::after { display: none; } /* Matikan fade di PC */
-        }
+        @media(min-width: 768px) { .category-wrapper::after { display: none; } }
+        
         .category-filters {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            white-space: nowrap;
-            padding: 5px 40px 10px 5px; /* Padding kanan dilebihin biar item terakhir ga ketutup fade */
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: smooth;
+            display: flex; gap: 10px; overflow-x: auto; white-space: nowrap;
+            padding: 5px 40px 10px 5px; -webkit-overflow-scrolling: touch; scroll-behavior: smooth;
         }
         .category-filters::-webkit-scrollbar { display: none; }
-        @media(min-width: 768px) {
-            .category-filters { justify-content: center; flex-wrap: wrap; overflow-x: visible; padding-right: 5px;}
-        }
+        @media(min-width: 768px) { .category-filters { justify-content: center; flex-wrap: wrap; overflow-x: visible; padding-right: 5px;} }
+        
         .filter-btn {
             background-color: var(--card-bg); color: var(--text-main); border: 1px solid #333;
             padding: 8px 18px; border-radius: 20px; font-size: 0.9em; cursor: pointer;
@@ -114,28 +98,57 @@
         .filter-btn.active { background-color: var(--accent); color: #000; border-color: var(--accent); font-weight: bold; }
 
         /* =========================================================
-           3 & 4. GRID PRODUK (CAROUSEL SWIPE DI MOBILE)
+           2. GRID PRODUK & SWIPE INDICATOR
            ========================================================= */
+        /* Teks Indikator Swipe (Hanya muncul di Mobile) */
+        .swipe-indicator {
+            display: none; 
+            text-align: right; 
+            font-size: 0.75em; 
+            color: var(--text-muted); 
+            margin-bottom: 8px;
+            padding-right: 5px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
+        
+        @media(max-width: 767px) {
+            .swipe-indicator { display: block; } /* Tampilkan di HP */
+        }
+
+        .grid-wrapper { position: relative; width: 100%; }
+        
+        /* Fade Gradient di sisi kanan produk */
+        @media(max-width: 767px) {
+             .grid-wrapper::after {
+                content: ''; position: absolute; top: 0; right: -12px; bottom: 0; width: 50px;
+                background: linear-gradient(to right, rgba(18,18,18,0), rgba(18,18,18,1));
+                pointer-events: none; z-index: 5;
+            }
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 20px;
         }
         
-        /* Ubah jadi Carousel/Swipe-Horizontal khusus untuk layar Mobile (Max 767px) */
         @media(max-width: 767px) {
             .grid {
                 display: flex;
                 overflow-x: auto;
                 scroll-snap-type: x mandatory;
-                gap: 15px;
-                padding-bottom: 20px; /* Ruang untuk efek bayangan/swipe */
-                padding-right: 40px; /* Ruang di akhir carousel */
+                gap: 15px; /* Jarak antar kartu dikurangi biar kelihatan ngintip */
+                padding-bottom: 20px; 
+                padding-right: 50px; /* Ruang lebih di akhir biar kartu terakhir gak ketutup fade */
                 -webkit-overflow-scrolling: touch;
             }
             .grid::-webkit-scrollbar { display: none; }
             .card {
-                min-width: 85vw; /* Kartu memakan 85% lebar layar HP */
+                /* Perbaikan Utama: Ukuran disetel 75% dari layar agar kartu berikutnya 'ngintip' di tepi kanan */
+                width: 75vw; 
+                min-width: 75vw;
+                max-width: 75vw;
                 scroll-snap-align: center;
                 flex-shrink: 0;
             }
@@ -161,7 +174,7 @@
         .buy-btn svg { width: 18px; height: 18px; fill: currentColor; }
         .buy-btn:hover { opacity: 0.85; }
 
-        /* Footer & Modal (Statis, Tidak Diubah) */
+        /* Footer & Modal */
         footer { margin-top: 40px; padding: 15px 0; border-top: 1px solid #2a2a2a; text-align: center; color: var(--text-muted); font-size: 0.8em; }
         .footer-links { display: flex; justify-content: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
         .footer-links a { color: var(--text-muted); text-decoration: none; cursor: pointer; }
@@ -214,7 +227,10 @@
         </div>
 
         <!-- WADAH PRODUK -->
-        <div class="grid" id="product-grid"></div>
+        <div class="swipe-indicator">Geser untuk melihat lainnya &rarr;</div> <!-- Indikator Teks Baru -->
+        <div class="grid-wrapper">
+            <div class="grid" id="product-grid"></div>
+        </div>
     </div>
 
     <!-- Footer -->
@@ -280,9 +296,17 @@
             let htmlKatalog = "";
             let counter = 0;
 
+            // Logika: Jika filter aktif bukan "all", dan jumlah produk di kategori tersebut kurang dari atau sama dengan 1, sembunyikan panah "Geser"
+            let countDiKategori = dataProduk.filter(p => p.kategoriID === kategoriAktif).length;
+            const indikatorSwipe = document.querySelector('.swipe-indicator');
+            if (kategoriAktif !== 'all' && countDiKategori <= 1) {
+                indikatorSwipe.style.display = 'none';
+            } else {
+                 indikatorSwipe.style.display = ''; // Kembalikan ke default CSS
+            }
+
             // Render ulang produk berdasarkan kategori
             dataProduk.forEach(produk => {
-                // Logika: Jika "all" dibatasi 4 produk. Jika kategori spesifik, tampilkan semua yang cocok.
                 let isMatch = (kategoriAktif === 'all') || (produk.kategoriID === kategoriAktif);
                 let isUnderLimit = (kategoriAktif !== 'all') || (counter < 4);
 
@@ -319,18 +343,13 @@
 
         // Fungsi Filter + Scroll Center Elegan
         function filterData(kategori, elemenTombol) {
-            // Ubah style tombol aktif
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             elemenTombol.classList.add('active');
 
-            // Geser tombol yang diklik ke tengah layar (elegan)
             elemenTombol.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-
-            // Reset scroll dari container produk ke paling kiri setiap kali ganti filter
             document.getElementById("product-grid").scrollTo({ left: 0, behavior: 'smooth' });
 
-            // Render ulang produk
             renderProduk(kategori);
         }
 

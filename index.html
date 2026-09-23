@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <!-- Kunci layar biar nggak bisa di-zoom aneh-aneh (App feel) -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Katalog | Semesta Digital Store</title>
 
     <!-- Favicon Logo Store -->
-    <link rel="icon" type="image/jpeg" href="store_logo.jpg">
+    <link rel="icon" type="image/jpeg" href="assets/store_logo.jpg">
 
     <style>
         :root {
@@ -16,16 +15,16 @@
             --text-main: #ffffff;
             --text-muted: #a0a0a0;
             --accent: #f5b700; /* Warna Kuning Logo */
-            --shadow: 0 8px 24px rgba(0,0,0,0.6);
+            --shadow: 0 4px 16px rgba(0,0,0,0.4);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 20px;
+            padding: 12px;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -33,99 +32,99 @@
 
         .container { max-width: 1100px; margin: 0 auto; width: 100%; flex-grow: 1; }
 
-        /* Menu Navigasi Atas (Desktop) */
+        /* Menu Navigasi Atas ala App Mobile */
         .topnav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0 30px 0;
-            border-bottom: 1px solid #2a2a2a;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 15px;
+            padding: 8px 12px;
+            background-color: var(--card-bg);
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            margin-bottom: 20px;
         }
         .nav-brand {
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1em;
             color: var(--accent);
             text-decoration: none;
+            white-space: nowrap;
         }
         .nav-menu {
             display: flex;
-            gap: 20px;
+            gap: 12px;
             list-style: none;
-            flex-wrap: wrap;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 2px;
         }
+        .nav-menu::-webkit-scrollbar { display: none; } /* Hilangkan scrollbar */
         .nav-menu a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.95em;
-            transition: color 0.2s;
+            font-size: 0.85em;
             cursor: pointer;
+            transition: color 0.2s;
         }
         .nav-menu a:hover { color: var(--accent); }
 
-        /* Header & Logo */
-        .header { text-align: center; margin-bottom: 30px; }
+        /* Header & Logo (Dioptimalkan untuk HP) */
+        .header { text-align: center; margin-bottom: 20px; }
         .logo-store {
-            width: 120px;
-            height: 120px;
+            width: 85px;
+            height: 85px;
             object-fit: cover;
-            border-radius: 16px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            border-radius: 14px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
             border: 2px solid var(--accent);
+            display: inline-block !important; /* Paksa tampil di semua layar */
         }
-        .header h1 { font-size: 2.2em; letter-spacing: 1px; margin-bottom: 5px; }
-        .header p { color: var(--text-muted); font-size: 1.1em; }
+        .header h1 { font-size: 1.6em; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .header p { color: var(--text-muted); font-size: 0.9em; }
 
-        /* Kotak Panduan Cara Order */
+        /* Kotak Panduan Cara Order (Compact untuk HP) */
         .how-to-buy {
             background-color: var(--card-bg);
             border: 1px solid #2a2a2a;
-            border-left: 4px solid var(--accent);
+            border-left: 3px solid var(--accent);
             border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 40px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            display: none; /* Sembunyikan default di HP agar tidak makan tempat, bisa dibuka via menu */
         }
-        .how-to-buy h3 {
-            color: var(--accent);
-            margin-bottom: 15px;
-            font-size: 1.2em;
+        @media(min-width: 768px) {
+            .how-to-buy { display: block; padding: 20px; margin-bottom: 30px; }
         }
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-        }
-        .step-item {
-            font-size: 0.9em;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-        .step-item strong {
-            color: var(--text-main);
-            display: block;
-            margin-bottom: 5px;
-        }
+        .how-to-buy h3 { color: var(--accent); margin-bottom: 10px; font-size: 1.05em; }
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+        .step-item { font-size: 0.85em; color: var(--text-muted); line-height: 1.4; }
+        .step-item strong { color: var(--text-main); display: block; margin-bottom: 2px; }
 
-        /* Filter Kategori */
+        /* Filter Kategori Model Geser (Swipeable) */
         .category-filters {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 30px;
+            gap: 8px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 5px;
+            -webkit-overflow-scrolling: touch;
+        }
+        .category-filters::-webkit-scrollbar { display: none; }
+        @media(min-width: 768px) {
+            .category-filters { justify-content: center; flex-wrap: wrap; overflow-x: visible; }
         }
         .filter-btn {
-            background-color: transparent;
+            background-color: var(--card-bg);
             color: var(--text-main);
             border: 1px solid #333;
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 20px;
+            font-size: 0.85em;
             cursor: pointer;
             transition: all 0.2s;
-            white-space: nowrap; /* Teks tidak turun baris */
+            flex-shrink: 0;
         }
         .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
         .filter-btn.active {
@@ -138,258 +137,221 @@
         /* Grid Produk */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 16px;
         }
+
+        /* Card Produk */
         .card {
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 10px;
             overflow: hidden;
             box-shadow: var(--shadow);
             border: 1px solid #2a2a2a;
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .card:hover { border-color: var(--accent); }
+
         .card-img {
             width: 100%;
-            height: 200px;
+            height: 160px;
             object-fit: cover;
             border-bottom: 1px solid #2a2a2a;
         }
+
         .card-content {
-            padding: 20px;
+            padding: 14px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
         .badge {
             align-self: flex-start;
-            background-color: #333;
+            background-color: #252525;
             color: var(--accent);
-            font-size: 0.75em;
-            padding: 4px 8px;
+            font-size: 0.7em;
+            padding: 3px 6px;
             border-radius: 4px;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
             font-weight: bold;
         }
-        .card h3 { font-size: 1.3em; margin-bottom: 10px; line-height: 1.3; }
-        .card p { color: var(--text-muted); font-size: 0.9em; margin-bottom: 20px; flex-grow: 1; line-height: 1.5; }
-        .price { font-size: 1.5em; color: var(--accent); font-weight: bold; margin-bottom: 15px; }
-        
+        .card h3 { font-size: 1.1em; margin-bottom: 6px; line-height: 1.3; }
+        .card p { color: var(--text-muted); font-size: 0.85em; margin-bottom: 14px; flex-grow: 1; line-height: 1.4; }
+        .price { font-size: 1.25em; color: var(--accent); font-weight: bold; margin-bottom: 12px; }
+
+        /* Tombol Beli */
         .buy-btn {
             background-color: var(--accent);
             color: #000;
             border: none;
-            padding: 12px;
+            padding: 10px;
             border-radius: 6px;
-            font-size: 1em;
+            font-size: 0.9em;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            transition: all 0.2s;
+            gap: 6px;
+            transition: opacity 0.2s;
         }
-        .buy-btn svg { width: 18px; height: 18px; fill: currentColor; }
-        .buy-btn:hover { opacity: 0.85; box-shadow: 0 0 10px rgba(245, 183, 0, 0.4); }
+        .buy-btn svg { width: 16px; height: 16px; fill: currentColor; }
+        .buy-btn:hover { opacity: 0.85; }
 
-        /* Footer */
+        /* Footer Ringkas */
         footer {
-            margin-top: 60px;
-            padding-top: 20px;
+            margin-top: 40px;
+            padding: 15px 0;
             border-top: 1px solid #2a2a2a;
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.85em;
+            font-size: 0.8em;
         }
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 10px;
+            margin-bottom: 10px;
             flex-wrap: wrap;
         }
-        .footer-links a { color: var(--text-muted); text-decoration: none; cursor: pointer; transition: color 0.2s; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; cursor: pointer; }
         .footer-links a:hover { color: var(--accent); }
 
-        /* Modal Styles (Tetap sama) */
+        /* Modal Styles */
         .modal {
-            display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.8); align-items: center; justify-content: center; padding: 20px;
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
         }
         .modal-content {
-            background-color: var(--card-bg); border: 1px solid var(--accent); border-radius: 12px;
-            max-width: 600px; width: 100%; padding: 25px; position: relative; max-height: 80vh;
-            overflow-y: auto; color: var(--text-main); box-shadow: var(--shadow);
+            background-color: var(--card-bg);
+            border: 1px solid var(--accent);
+            border-radius: 12px;
+            max-width: 500px;
+            width: 100%;
+            padding: 20px;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+            color: var(--text-main);
+            box-shadow: var(--shadow);
         }
-        .modal-content h2 { color: var(--accent); margin-bottom: 15px; }
-        .modal-content p { color: var(--text-muted); font-size: 0.9em; line-height: 1.6; margin-bottom: 12px; }
+        .modal-content h2 { color: var(--accent); margin-bottom: 12px; font-size: 1.3em; }
+        .modal-content p { color: var(--text-muted); font-size: 0.88em; line-height: 1.5; margin-bottom: 10px; }
         .close-btn {
-            position: absolute; top: 15px; right: 15px; color: var(--text-muted); font-size: 1.5em;
-            cursor: pointer; border: none; background: none;
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            color: var(--text-muted);
+            font-size: 1.4em;
+            cursor: pointer;
+            border: none;
+            background: none;
         }
         .close-btn:hover { color: var(--accent); }
         .hide { display: none !important; }
-
-        /* ========================================================= */
-        /* OPTIMASI TAMPILAN KHUSUS LAYAR HP (MOBILE APP FEEL)       */
-        /* ========================================================= */
-        @media (max-width: 768px) {
-            body { padding: 12px; }
-            
-            /* Navbar jadi horizontal scroll / chip style di HP */
-            .topnav { 
-                flex-direction: column; 
-                padding: 5px 0 15px 0; 
-                margin-bottom: 15px; 
-                border-bottom: none; 
-            }
-            .nav-brand { margin-bottom: 15px; }
-            .nav-menu {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                width: 100%;
-                justify-content: flex-start;
-                padding-bottom: 10px;
-                gap: 10px;
-                -webkit-overflow-scrolling: touch; /* Biar scrollnya mulus kayak app */
-            }
-            .nav-menu::-webkit-scrollbar { display: none; } /* Hilangkan garis scrollbar */
-            .nav-menu a {
-                background: #252525;
-                padding: 6px 14px;
-                border-radius: 20px;
-                font-size: 0.85em;
-                white-space: nowrap;
-            }
-
-            /* Header & Logo diperkecil */
-            .header { margin-bottom: 20px; }
-            .logo-store { width: 85px; height: 85px; border-radius: 12px; margin-bottom: 10px; }
-            .header h1 { font-size: 1.6em; }
-            .header p { font-size: 0.9em; }
-
-            /* Sembunyikan Panel Cara Transaksi yang kebesaran */
-            .how-to-buy { display: none; }
-
-            /* Kategori Filter bisa di-scroll ke samping */
-            .category-filters {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                justify-content: flex-start;
-                padding-bottom: 10px;
-                margin-bottom: 20px;
-                gap: 8px;
-                -webkit-overflow-scrolling: touch;
-            }
-            .category-filters::-webkit-scrollbar { display: none; }
-            .filter-btn { padding: 6px 14px; font-size: 0.85em; }
-
-            /* Jarak Card Produk & Footer */
-            .grid { gap: 15px; }
-            .card-content { padding: 15px; }
-            
-            footer { margin-top: 30px; padding-top: 15px; }
-            .footer-links { font-size: 0.9em; gap: 10px; }
-        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Menu Navigasi Atas -->
+        <!-- Menu Navigasi Atas ala App Mobile -->
         <nav class="topnav">
             <a href="#" class="nav-brand">⚡ Semesta Digital</a>
             <ul class="nav-menu">
-                <li><a href="#katalog">Katalog</a></li>
                 <li><a onclick="openModal('modal-cara-order')">Cara Order</a></li>
-                <li><a onclick="openModal('modal-pembayaran')">Info Pembayaran</a></li>
+                <li><a onclick="openModal('modal-pembayaran')">Info QRIS</a></li>
                 <li><a onclick="openModal('modal-about')">Tentang Kami</a></li>
             </ul>
         </nav>
 
         <div class="header" id="katalog">
-            <img src="store_logo.jpg" alt="Logo Semesta Digital Store" class="logo-store">
+            <!-- LOGO STORE (Dipastikan tampil di semua perangkat) -->
+            <img src="assets/store_logo.jpg" alt="Logo Semesta Digital Store" class="logo-store">
+            
             <h1>Semesta Digital Store</h1>
-            <p>Katalog Produk Digital: Script, Web Tools, Template & E-Book.</p>
+            <p>Katalog Produk Digital: Script, Web Tools & Template.</p>
         </div>
 
-        <!-- Panduan Ringkas Cara Order di Halaman Utama (Akan otomatis sembunyi di HP) -->
+        <!-- Panduan Ringkas Cara Order -->
         <div class="how-to-buy">
             <h3>📖 Cara Transaksi Cepat & Aman:</h3>
             <div class="steps-grid">
                 <div class="step-item">
                     <strong>1. Pilih Produk</strong>
-                    Tekan tombol keranjang "Beli via WhatsApp" pada produk pilihan lu. Otomatis terhubung ke chat admin.
+                    Tekan tombol keranjang "Beli via WhatsApp" pada produk pilihan lu.
                 </div>
                 <div class="step-item">
                     <strong>2. Lakukan Pembayaran</strong>
-                    Transaksi via Transfer Bank atau scan QRIS toko. Kirim bukti transfer (*screenshot*) ke chat.
+                    Transfer via Bank atau scan QRIS toko, lalu kirim bukti transfer.
                 </div>
                 <div class="step-item">
                     <strong>3. File Dikirim Instan</strong>
-                    Setelah dana terkonfirmasi, link download file produk digital akan langsung dikirim detik itu juga.
+                    Setelah dana terkonfirmasi, link download file langsung dikirim.
                 </div>
             </div>
         </div>
 
-        <!-- Tombol Filter -->
+        <!-- Tombol Filter (Bisa digeser/swipe di HP) -->
         <div class="category-filters">
-            <button class="filter-btn active" onclick="filterData('all')">Semua Produk</button>
-            <button class="filter-btn" onclick="filterData('ebook')">E-Book & Hiburan</button>
-            <button class="filter-btn" onclick="filterData('template')">Template UI/UX</button>
-            <button class="filter-btn" onclick="filterData('web')">Web Tools & Script</button>
+            <button class="filter-btn active" onclick="filterData('all')">Semua</button>
+            <button class="filter-btn" onclick="filterData('web')">Web Tools</button>
+            <button class="filter-btn" onclick="filterData('template')">Template</button>
+            <button class="filter-btn" onclick="filterData('ebook')">E-Book</button>
         </div>
 
-        <!-- AREA GRID PRODUK: Akan diisi otomatis oleh Javascript JSON -->
-        <div class="grid" id="product-grid">
-            <!-- Data produk di-render di sini -->
-        </div>
+        <!-- WADAH PRODUK DINAMIS (JSON) -->
+        <div class="grid" id="product-grid"></div>
     </div>
 
-    <!-- Footer Trust Links -->
+    <!-- Footer -->
     <footer>
         <div class="footer-links">
-            <a onclick="openModal('modal-cara-order')">Panduan Order</a> • 
-            <a onclick="openModal('modal-about')">Tentang Kami</a> • 
+            <a onclick="openModal('modal-cara-order')">Panduan</a> • 
+            <a onclick="openModal('modal-pembayaran')">QRIS</a> • 
+            <a onclick="openModal('modal-about')">Tentang</a> • 
             <a onclick="openModal('modal-disclaimer')">Disclaimer</a> • 
-            <a onclick="openModal('modal-privacy')">Kebijakan Privasi</a>
+            <a onclick="openModal('modal-privacy')">Privasi</a>
         </div>
-        <p>&copy; 2026 Semesta Digital Store. Seluruh hak cipta dilindungi.</p>
+        <p>&copy; 2026 Semesta Digital Store.</p>
     </footer>
 
     <!-- MODAL CARA ORDER -->
     <div id="modal-cara-order" class="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('modal-cara-order')">&times;</button>
-            <h2>Panduan Lengkap Cara Order</h2>
-            <p>1. <strong>Pilih Barang:</strong> Cari produk digital yang lu butuhkan di halaman utama katalog.</p>
-            <p>2. <strong>Hubungi Admin:</strong> Klik tombol ikon keranjang <em>"Beli via WhatsApp"</em>. Otomatis lu akan diarahkan ke aplikasi WhatsApp dengan pesan format otomatis berisi nama produk dan harganya.</p>
-            <p>3. <strong>Pembayaran:</strong> Admin akan memberikan instruksi pembayaran (Transfer Bank atau QRIS resmi).</p>
-            <p>4. <strong>Konfirmasi & Pengiriman:</strong> Kirim bukti transfer. File aset digital (berupa link Google Drive, ZIP, atau PDF) akan langsung dikirimkan ke chat WhatsApp lu dalam hitungan menit.</p>
+            <h2>Panduan Cara Order</h2>
+            <p>1. <strong>Pilih Barang:</strong> Cari produk digital di katalog.</p>
+            <p>2. <strong>Hubungi Admin:</strong> Klik tombol <em>"Beli via WhatsApp"</em> untuk terhubung otomatis.</p>
+            <p>3. <strong>Pembayaran:</strong> Lakukan transfer atau scan QRIS resmi toko.</p>
+            <p>4. <strong>Pengiriman:</strong> Kirim bukti transfer, file dikirim detik itu juga.</p>
         </div>
     </div>
 
-    <!-- MODAL PEMBAYARAN (QRIS / REKENING) -->
+    <!-- MODAL PEMBAYARAN (QRIS) -->
     <div id="modal-pembayaran" class="modal">
         <div class="modal-content" style="text-align: center;">
             <button class="close-btn" onclick="closeModal('modal-pembayaran')">&times;</button>
-            <h2>Metode Pembayaran Resmi</h2>
-            <p>Semesta Digital Store mendukung pembayaran instan via QRIS (Semua E-Wallet & Mobile Banking) dan Transfer Bank.</p>
+            <h2>Metode Pembayaran</h2>
+            <p>Support QRIS (ShopeePay, GoPay, DANA, OVO, m-Banking) & Transfer Bank.</p>
             
-            <div style="background: #252525; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px dashed var(--accent);">
-                <p style="color: var(--text-main); font-weight: bold; margin-bottom: 10px;">SCAN QRIS DIBAWAH INI:</p>
-                <img src="qris.jpg" alt="QRIS Semesta Digital Store" style="max-width: 250px; width: 100%; border-radius: 8px; border: 2px solid #fff;">
-                <p style="font-size: 0.85em; margin-top: 10px; color: var(--accent);">Support: ShopeePay, GoPay, DANA, OVO, BCA, Mandiri, dll.</p>
+            <div style="background: #252525; padding: 15px; border-radius: 8px; margin: 15px 0; border: 1px dashed var(--accent);">
+                <p style="color: var(--text-main); font-weight: bold; margin-bottom: 8px; font-size: 0.9em;">SCAN QRIS DIBAWAH:</p>
+                <img src="assets/qris.jpg" alt="QRIS Semesta Digital Store" style="max-width: 220px; width: 100%; border-radius: 6px; border: 2px solid #fff;">
             </div>
-            
-            <p><strong>Penting:</strong> Setelah melakukan scan & transfer, wajib kirimkan bukti *screenshot* transaksi ke WhatsApp admin agar file digital langsung dikirim.</p>
+            <p><strong>Penting:</strong> Wajib kirimkan bukti screenshot ke WhatsApp admin.</p>
         </div>
     </div>
 
@@ -398,8 +360,7 @@
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('modal-about')">&times;</button>
             <h2>Tentang Kami</h2>
-            <p><strong>Semesta Digital Store</strong> adalah platform penyedia produk digital terpercaya yang berfokus pada efisiensi dan fungsionalitas. Kami menyediakan berbagai alat bantu digital seperti web script, template desain premium, dan e-book berkualitas tinggi.</p>
-            <p>Seluruh transaksi dilakukan secara langsung dan transparan melalui konfirmasi WhatsApp untuk menjamin keamanan, kemudahan, dan pengiriman aset digital secara langsung tanpa kendala.</p>
+            <p><strong>Semesta Digital Store</strong> adalah platform penyedia produk digital terpercaya (web script, template, dan e-book) bergaransi aman via WhatsApp.</p>
         </div>
     </div>
 
@@ -408,9 +369,7 @@
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('modal-disclaimer')">&times;</button>
             <h2>Penafian (Disclaimer)</h2>
-            <p>1. <strong>Sifat Produk Digital:</strong> Seluruh produk yang dijual berbentuk aset non-fisik (file digital/source code). Harap baca deskripsi produk dengan cermat sebelum melakukan pembayaran.</p>
-            <p>2. <strong>Kebijakan Pengembalian:</strong> Karena sifat produk digital yang langsung dapat diakses setelah dikirimkan, kami tidak melayani pengembalian dana (non-refundable) kecuali terjadi kesalahan pengiriman file dari pihak kami.</p>
-            <p>3. <strong>Penggunaan Produk:</strong> Produk yang dibeli dilarang untuk didistribusikan ulang atau dijual kembali tanpa izin tertulis dari Semesta Digital Store.</p>
+            <p>Produk bersifat non-fisik (non-refundable). Dilarang menyebarluaskan atau menjual kembali file tanpa izin.</p>
         </div>
     </div>
 
@@ -419,15 +378,15 @@
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('modal-privacy')">&times;</button>
             <h2>Kebijakan Privasi</h2>
-            <p>1. <strong>Pengumpulan Data:</strong> Kami menghormati privasi Anda. Kami hanya mengumpulkan informasi dasar (seperti nomor WhatsApp dan nama) yang Anda berikan saat melakukan transaksi langsung.</p>
-            <p>2. <strong>Penggunaan Data:</strong> Informasi Anda hanya digunakan untuk pemrosesan pesanan, pengiriman file produk digital, dan layanan bantuan pelanggan.</p>
-            <p>3. <strong>Keamanan Data:</strong> Kami menjamin tidak akan pernah menjual, menyewakan, atau membagikan data pribadi Anda kepada pihak ketiga mana pun.</p>
+            <p>Data pribadi Anda (nomor WA) dijamin aman dan hanya digunakan untuk pemrosesan pesanan.</p>
         </div>
     </div>
 
     <script>
+        const noWa = '628980335573'; // Nomor WA lu
+
         // ==========================================
-        // 1. DATA PRODUK JSON (Tambah Produk Di Sini)
+        // DATABASE PRODUK (TAMBAH PRODUK DI SINI)
         // ==========================================
         const dataProduk = [
             {
@@ -456,9 +415,7 @@
             }
         ];
 
-        // ==========================================
-        // 2. FUNGSI RENDER PRODUK OTOMATIS
-        // ==========================================
+        // Render Produk Otomatis Mengarah ke folder assets/
         function renderProduk() {
             const grid = document.getElementById("product-grid");
             let htmlKatalog = "";
@@ -466,7 +423,7 @@
             dataProduk.forEach(produk => {
                 htmlKatalog += `
                 <div class="card" data-category="${produk.kategoriID}">
-                    <img src="${produk.gambar}" alt="${produk.nama}" class="card-img" onerror="this.src='https://placehold.co/600x400/1e1e1e/f5b700?text=Semesta+Digital'">
+                    <img src="assets/${produk.gambar}" alt="${produk.nama}" class="card-img" onerror="this.src='https://placehold.co/600x400/1e1e1e/f5b700?text=No+Image'">
                     <div class="card-content">
                         <span class="badge">${produk.labelKategori}</span>
                         <h3>${produk.nama}</h3>
@@ -482,22 +439,16 @@
             grid.innerHTML = htmlKatalog;
         }
 
-        // Panggil render saat halaman dimuat
         renderProduk();
 
-        // ==========================================
-        // 3. FUNGSI TRANSAKSI WA ASLI
-        // ==========================================
+        // Transaksi WA
         function beli(namaProduk, harga) {
-            const noWa = '628980335573'; // Nomor sesuai kode asli lu
             const pesan = `Halo Semesta Digital Store,\n\nSaya mau order:\n*${namaProduk}*\nHarga: Rp ${harga.toLocaleString('id-ID')},\n\nTolong kirimkan Nomor Rekening / QRIS untuk transaksi pembayaran.`;
             const url = `https://wa.me/${noWa}?text=${encodeURIComponent(pesan)}`;
             window.open(url, '_blank');
         }
 
-        // ==========================================
-        // 4. FUNGSI FILTER KATEGORI & MODALS
-        // ==========================================
+        // Filter Kategori
         function filterData(kategori) {
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
@@ -513,20 +464,12 @@
             });
         }
 
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'flex';
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
+        // Modal Control
+        function openModal(modalId) { document.getElementById(modalId).style.display = 'flex'; }
+        function closeModal(modalId) { document.getElementById(modalId).style.display = 'none'; }
         window.onclick = function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
+            document.querySelectorAll('.modal').forEach(modal => {
+                if (event.target === modal) modal.style.display = 'none';
             });
         }
     </script>

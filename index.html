@@ -204,15 +204,24 @@
         <div class="header" id="katalog">
             <img src="assets/store_logo.jpg" alt="Logo Semesta Digital Store" class="logo-store">
             <h1>Semesta Digital Store</h1>
-            <p>Katalog Produk Digital: Script, Web Tools & Template.</p>
+            <p>Tongkrongan Kaum Rebahan</p>
         </div>
 
         <div class="how-to-buy">
             <h3>📖 Cara Transaksi Cepat & Aman:</h3>
             <div class="steps-grid">
-                <div class="step-item"><strong>1. Pilih Produk</strong> Tekan tombol keranjang "Beli via WhatsApp".</div>
-                <div class="step-item"><strong>2. Lakukan Pembayaran</strong> Transfer via Bank atau scan QRIS toko.</div>
-                <div class="step-item"><strong>3. File Dikirim Instan</strong> Setelah dana terkonfirmasi, file langsung dikirim.</div>
+                <div class="step-item">
+                    <strong>1. Pilih Produk</strong>
+                    Tekan tombol keranjang "Beli via WhatsApp" pada produk pilihan lu. Otomatis terhubung ke chat admin.
+                </div>
+                <div class="step-item">
+                    <strong>2. Lakukan Pembayaran</strong>
+                    Transaksi via Transfer Bank atau scan QRIS toko. Kirim bukti transfer (*screenshot*) ke chat.
+                </div>
+                <div class="step-item">
+                    <strong>3. File Dikirim Instan</strong>
+                    Setelah dana terkonfirmasi, link download file produk digital akan langsung dikirim detik itu juga.
+                </div>
             </div>
         </div>
 
@@ -251,9 +260,9 @@
             <button class="close-btn" onclick="closeModal('modal-cara-order')">&times;</button>
             <h2>Panduan Lengkap Cara Order</h2>
             <p>1. <strong>Pilih Barang:</strong> Cari produk digital yang lu butuhkan di halaman utama katalog.</p>
-            <p>2. <strong>Hubungi Admin:</strong> Klik tombol ikon keranjang <em>"Beli via WhatsApp"</em>.</p>
+            <p>2. <strong>Hubungi Admin:</strong> Klik tombol ikon keranjang <em>"Beli via WhatsApp"</em>. Otomatis lu akan diarahkan ke aplikasi WhatsApp dengan pesan format otomatis berisi nama produk dan harganya.</p>
             <p>3. <strong>Pembayaran:</strong> Admin akan memberikan instruksi pembayaran (Transfer Bank atau QRIS resmi).</p>
-            <p>4. <strong>Konfirmasi & Pengiriman:</strong> Kirim bukti transfer. File aset digital akan dikirimkan ke WhatsApp lu dalam hitungan menit.</p>
+            <p>4. <strong>Konfirmasi & Pengiriman:</strong> Kirim bukti transfer. File aset digital (berupa link Google Drive, ZIP, atau PDF) akan langsung dikirimkan ke chat WhatsApp lu dalam hitungan menit.</p>
         </div>
     </div>
 
@@ -267,16 +276,30 @@
                 <p style="color: var(--text-main); font-weight: bold; margin-bottom: 8px; font-size: 0.9em;">SCAN QRIS DIBAWAH:</p>
                 <img src="assets/qris.jpg" alt="QRIS Semesta Digital Store" style="max-width: 220px; width: 100%; border-radius: 6px; border: 2px solid #fff;">
             </div>
-            <p><strong>Penting:</strong> Wajib kirimkan bukti screenshot ke WhatsApp admin.</p>
+            <p><strong>Penting:</strong> Setelah melakukan scan & transfer, wajib kirimkan bukti *screenshot* transaksi ke WhatsApp admin agar file digital langsung dikirim.</p>
         </div>
     </div>
 
     <!-- MODAL ABOUT US -->
-    <div id="modal-about" class="modal"><div class="modal-content"><button class="close-btn" onclick="closeModal('modal-about')">&times;</button><h2>Tentang Kami</h2><p><strong>Semesta Digital Store</strong> adalah platform penyedia produk digital terpercaya yang berfokus pada efisiensi dan fungsionalitas.</p></div></div>
+    <div id="modal-about" class="modal"><div class="modal-content"<button class="close-btn" onclick="closeModal('modal-about')">&times;</button>
+            <h2>Tentang Kami</h2>
+            <p><strong>Semesta Digital Store</strong> adalah platform penyedia produk digital terpercaya yang berfokus pada efisiensi dan fungsionalitas. Kami menyediakan berbagai alat bantu digital seperti web script, template desain premium, dan e-book berkualitas tinggi.</p>
+            <p>Seluruh transaksi dilakukan secara langsung dan transparan melalui konfirmasi WhatsApp untuk menjamin keamanan, kemudahan, dan pengiriman aset digital secara langsung tanpa kendala.</p>
+        </div></div>
     <!-- MODAL DISCLAIMER -->
-    <div id="modal-disclaimer" class="modal"><div class="modal-content"><button class="close-btn" onclick="closeModal('modal-disclaimer')">&times;</button><h2>Penafian (Disclaimer)</h2><p>Semua produk berbentuk aset non-fisik (non-refundable).</p></div></div>
+    <div id="modal-disclaimer" class="modal"><div class="modal-content"<button class="close-btn" onclick="closeModal('modal-disclaimer')">&times;</button>
+            <h2>Penafian (Disclaimer)</h2>
+            <p>1. <strong>Sifat Produk Digital:</strong> Seluruh produk yang dijual berbentuk aset non-fisik (file digital/source code). Harap baca deskripsi produk dengan cermat sebelum melakukan pembayaran.</p>
+            <p>2. <strong>Kebijakan Pengembalian:</strong> Karena sifat produk digital yang langsung dapat diakses setelah dikirimkan, kami tidak melayani pengembalian dana (non-refundable) kecuali terjadi kesalahan pengiriman file dari pihak kami.</p>
+            <p>3. <strong>Penggunaan Produk:</strong> Produk yang dibeli dilarang untuk didistribusikan ulang atau dijual kembali tanpa izin tertulis dari Semesta Digital Store.</p>
+        </div></div>
     <!-- MODAL PRIVACY -->
-    <div id="modal-privacy" class="modal"><div class="modal-content"><button class="close-btn" onclick="closeModal('modal-privacy')">&times;</button><h2>Kebijakan Privasi</h2><p>Data WhatsApp dan nama lu kami jamin aman.</p></div></div>
+    <div id="modal-privacy" class="modal"><div class="modal-content"><button class="close-btn" onclick="closeModal('modal-privacy')">&times;</button>
+            <h2>Kebijakan Privasi</h2>
+            <p>1. <strong>Pengumpulan Data:</strong> Kami menghormati privasi Anda. Kami hanya mengumpulkan informasi dasar (seperti nomor WhatsApp dan nama) yang Anda berikan saat melakukan transaksi langsung.</p>
+            <p>2. <strong>Penggunaan Data:</strong> Informasi Anda hanya digunakan untuk pemrosesan pesanan, pengiriman file produk digital, dan layanan bantuan pelanggan.</p>
+            <p>3. <strong>Keamanan Data:</strong> Kami menjamin tidak akan pernah menjual, menyewakan, atau membagikan data pribadi Anda kepada pihak ketiga mana pun.</p>
+        </div></div>
 
     <script>
         const noWa = '628980335573'; 

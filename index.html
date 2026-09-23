@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog | Semesta Digital Store</title>
+
+    <!-- Favicon Logo Store -->
+    <link rel="icon" type="image/jpeg" href="store_logo.jpg">
+
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --accent: #f5b700; /* Warna Kuning Logo */
+            --shadow: 0 8px 24px rgba(0,0,0,0.6);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; width: 100%; flex-grow: 1; }
+
+        /* Menu Navigasi Atas */
+        .topnav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0 30px 0;
+            border-bottom: 1px solid #2a2a2a;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .nav-brand {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        .nav-menu a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+        .nav-menu a:hover { color: var(--accent); }
+
+        /* Header & Logo */
+        .header { text-align: center; margin-bottom: 30px; }
+        .logo-store {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            border: 2px solid var(--accent);
+        }
+        .header h1 { font-size: 2.2em; letter-spacing: 1px; margin-bottom: 5px; }
+        .header p { color: var(--text-muted); font-size: 1.1em; }
+
+        /* Kotak Panduan Cara Order (Step-by-step) */
+        .how-to-buy {
+            background-color: var(--card-bg);
+            border: 1px solid #2a2a2a;
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+        .how-to-buy h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+        .step-item {
+            font-size: 0.9em;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+        .step-item strong {
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Filter Kategori */
+        .category-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .filter-btn {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid #333;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .filter-btn.active {
+            background-color: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Grid Produk (Mobile Responsif) */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* Card Produk */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid #2a2a2a;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .badge {
+            align-self: flex-start;
+            background-color: #333;
+            color: var(--accent);
+            font-size: 0.75em;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: bold;
+        }
+        .card h3 { font-size: 1.3em; margin-bottom: 10px; line-height: 1.3; }
+        .card p { color: var(--text-muted); font-size: 0.9em; margin-bottom: 20px; flex-grow: 1; line-height: 1.5; }
+        .price { font-size: 1.5em; color: var(--accent); font-weight: bold; margin-bottom: 15px; }
+
+        /* Tombol Beli dengan Ikon Keranjang */
+        .buy-btn {
+            background-color: var(--accent);
+            color: #000;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        .buy-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+        .buy-btn:hover {
+            opacity: 0.85;
+            box-shadow: 0 0 10px rgba(245, 183, 0, 0.4);
+        }
+
+        /* Footer & Trust Badges */
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #2a2a2a;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85em;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--accent); }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-content {
+            background-color: var(--card-bg);
+            border: 1px solid var(--accent);
+            border-radius: 12px;
+            max-width: 600px;
+            width: 100%;
+            padding: 25px;
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+            color: var(--text-main);
+            box-shadow: var(--shadow);
+        }
+        .modal-content h2 { color: var(--accent); margin-bottom: 15px; }
+        .modal-content p { color: var(--text-muted); font-size: 0.9em; line-height: 1.6; margin-bottom: 12px; }
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--text-muted);
+            font-size: 1.5em;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        .close-btn:hover { color: var(--accent); }
+
+        .hide { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Menu Navigasi Atas -->
+        <nav class="topnav">
+            <a href="#" class="nav-brand">⚡ Semesta Digital</a>
+            <ul class="nav-menu">
+                <li><a href="#katalog">Katalog</a></li>
+                <li><a onclick="openModal('modal-cara-order')">Cara Order</a></li>
+                <a onclick="openModal('modal-pembayaran')">Info Pembayaran</a>
+                <li><a onclick="openModal('modal-about')">Tentang Kami</a></li>
+            </ul>
+        </nav>
+
+        <div class="header" id="katalog">
+            <img src="store_logo.jpg" alt="Logo Semesta Digital Store" class="logo-store">
+            <h1>Semesta Digital Store</h1>
+            <p>Katalog Produk Digital: Script, Web Tools, Template & E-Book.</p>
+        </div>
+
+        <!-- Panduan Ringkas Cara Order di Halaman Utama -->
+        <div class="how-to-buy">
+            <h3>📖 Cara Transaksi Cepat & Aman:</h3>
+            <div class="steps-grid">
+                <div class="step-item">
+                    <strong>1. Pilih Produk</strong>
+                    Tekan tombol keranjang "Beli via WhatsApp" pada produk pilihan lu. Otomatis terhubung ke chat admin.
+                </div>
+                <div class="step-item">
+                    <strong>2. Lakukan Pembayaran</strong>
+                    Transaksi via Transfer Bank atau scan QRIS toko. Kirim bukti transfer (*screenshot*) ke chat.
+                </div>
+                <div class="step-item">
+                    <strong>3. File Dikirim Instan</strong>
+                    Setelah dana terkonfirmasi, link download file produk digital akan langsung dikirim detik itu juga.
+                </div>
+            </div>
+        </div>
+
+        <!-- Tombol Filter -->
+        <div class="category-filters">
+            <button class="filter-btn active" onclick="filterData('all')">Semua Produk</button>
+            <button class="filter-btn" onclick="filterData('ebook')">E-Book & Hiburan</button>
+            <button class="filter-btn" onclick="filterData('template')">Template UI/UX</button>
+            <button class="filter-btn" onclick="filterData('web')">Web Tools & Script</button>
+            
+        </div>
+
+        <div class="grid" id="product-grid">
+            
+            <!-- PRODUK 1 -->
+            <div class="card" data-category="web">
+                <img src="web-tool.jpg" alt="Web Tool" class="card-img">
+                <div class="card-content">
+                    <span class="badge">Web Tools</span>
+                    <h3>Sistem Manajemen UMKM Instan</h3>
+                    <p>Web app berbasis HTML/JS siap pakai untuk rekap data. Ringan dan siap hosting gratis.</p>
+                    <div class="price">Rp 100.000</div>
+                    <button class="buy-btn" onclick="beli('Sistem Manajemen UMKM', 100000)">
+                        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                        Beli via WhatsApp
+                    </button>
+                </div>
+            </div>
+
+            <!-- PRODUK 2 -->
+            <div class="card" data-category="template">
+                <img src="template.jpg" alt="Template IG" class="card-img">
+                <div class="card-content">
+                    <span class="badge">Template</span>
+                    <h3>Dark Aesthetic Post Template</h3>
+                    <p>Kumpulan 50 desain post IG format dark neumorphic siap edit di Canva & Photoshop.</p>
+                    <div class="price">Rp 50.000</div>
+                    <button class="buy-btn" onclick="beli('Dark Aesthetic Post Template', 50000)">
+                        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                        Beli via WhatsApp
+                    </button>
+                </div>
+            </div>
+
+            <!-- PRODUK 3 -->
+            <div class="card" data-category="ebook">
+                <img src="ebook.jpg" alt="E-Book" class="card-img">
+                <div class="card-content">
+                    <span class="badge">E-Book</span>
+                    <h3>Kitab Copywriting Satir</h3>
+                    <p>Panduan menulis caption nyeleneh dan dark jokes untuk narik perhatian audiens. Format PDF.</p>
+                    <div class="price">Rp 35.000</div>
+                    <button class="buy-btn" onclick="beli('Kitab Copywriting Satir', 35000)">
+                        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                        Beli via WhatsApp
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer Trust Links -->
+    <footer>
+        <div class="footer-links">
+            <a onclick="openModal('modal-cara-order')">Panduan Order</a> • 
+            <a onclick="openModal('modal-about')">Tentang Kami</a> • 
+            <a onclick="openModal('modal-disclaimer')">Disclaimer</a> • 
+            <a onclick="openModal('modal-privacy')">Kebijakan Privasi</a>
+        </div>
+        <p>&copy; 2026 Semesta Digital Store. Seluruh hak cipta dilindungi.</p>
+    </footer>
+
+    <!-- MODAL CARA ORDER -->
+    <div id="modal-cara-order" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal-cara-order')">&times;</button>
+            <h2>Panduan Lengkap Cara Order</h2>
+            <p>1. <strong>Pilih Barang:</strong> Cari produk digital yang lu butuhkan di halaman utama katalog.</p>
+            <p>2. <strong>Hubungi Admin:</strong> Klik tombol ikon keranjang <em>"Beli via WhatsApp"</em>. Otomatis lu akan diarahkan ke aplikasi WhatsApp dengan pesan format otomatis berisi nama produk dan harganya.</p>
+            <p>3. <strong>Pembayaran:</strong> Admin akan memberikan instruksi pembayaran (Transfer Bank atau QRIS resmi).</p>
+            <p>4. <strong>Konfirmasi & Pengiriman:</strong> Kirim bukti transfer. File aset digital (berupa link Google Drive, ZIP, atau PDF) akan langsung dikirimkan ke chat WhatsApp lu dalam hitungan menit.</p>
+        </div>
+    </div>
+
+<!-- MODAL PEMBAYARAN (QRIS / REKENING) -->
+    <div id="modal-pembayaran" class="modal">
+        <div class="modal-content" style="text-align: center;">
+            <button class="close-btn" onclick="closeModal('modal-pembayaran')">&times;</button>
+            <h2>Metode Pembayaran Resmi</h2>
+            <p>Semesta Digital Store mendukung pembayaran instan via QRIS (Semua E-Wallet & Mobile Banking) dan Transfer Bank.</p>
+            
+            <div style="background: #252525; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px dashed var(--accent);">
+                <p style="color: var(--text-main); font-weight: bold; margin-bottom: 10px;">SCAN QRIS DIBAWAH INI:</p>
+                <!-- Upload gambar QRIS ShopeePay lu ke GitHub, beri nama qris.jpg -->
+                <img src="qris.jpg" alt="QRIS Semesta Digital Store" style="max-width: 250px; width: 100%; border-radius: 8px; border: 2px solid #fff;">
+                <p style="font-size: 0.85em; margin-top: 10px; color: var(--accent);">Support: ShopeePay, GoPay, DANA, OVO, BCA, Mandiri, dll.</p>
+            </div>
+            
+            <p><strong>Penting:</strong> Setelah melakukan scan & transfer, wajib kirimkan bukti *screenshot* transaksi ke WhatsApp admin agar file digital langsung dikirim.</p>
+        </div>
+    </div>
+
+    <!-- MODAL ABOUT US -->
+    <div id="modal-about" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal-about')">&times;</button>
+            <h2>Tentang Kami</h2>
+            <p><strong>Semesta Digital Store</strong> adalah platform penyedia produk digital terpercaya yang berfokus pada efisiensi dan fungsionalitas. Kami menyediakan berbagai alat bantu digital seperti web script, template desain premium, dan e-book berkualitas tinggi.</p>
+            <p>Seluruh transaksi dilakukan secara langsung dan transparan melalui konfirmasi WhatsApp untuk menjamin keamanan, kemudahan, dan pengiriman aset digital secara langsung tanpa kendala.</p>
+        </div>
+    </div>
+
+    <!-- MODAL DISCLAIMER -->
+    <div id="modal-disclaimer" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal-disclaimer')">&times;</button>
+            <h2>Penafian (Disclaimer)</h2>
+            <p>1. <strong>Sifat Produk Digital:</strong> Seluruh produk yang dijual berbentuk aset non-fisik (file digital/source code). Harap baca deskripsi produk dengan cermat sebelum melakukan pembayaran.</p>
+            <p>2. <strong>Kebijakan Pengembalian:</strong> Karena sifat produk digital yang langsung dapat diakses setelah dikirimkan, kami tidak melayani pengembalian dana (non-refundable) kecuali terjadi kesalahan pengiriman file dari pihak kami.</p>
+            <p>3. <strong>Penggunaan Produk:</strong> Produk yang dibeli dilarang untuk didistribusikan ulang atau dijual kembali tanpa izin tertulis dari Semesta Digital Store.</p>
+        </div>
+    </div>
+
+    <!-- MODAL PRIVACY POLICY -->
+    <div id="modal-privacy" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('modal-privacy')">&times;</button>
+            <h2>Kebijakan Privasi</h2>
+            <p>1. <strong>Pengumpulan Data:</strong> Kami menghormati privasi Anda. Kami hanya mengumpulkan informasi dasar (seperti nomor WhatsApp dan nama) yang Anda berikan saat melakukan transaksi langsung.</p>
+            <p>2. <strong>Penggunaan Data:</strong> Informasi Anda hanya digunakan untuk pemrosesan pesanan, pengiriman file produk digital, dan layanan bantuan pelanggan.</p>
+            <p>3. <strong>Keamanan Data:</strong> Kami menjamin tidak akan pernah menjual, menyewakan, atau membagikan data pribadi Anda kepada pihak ketiga mana pun.</p>
+        </div>
+    </div>
+
+    <script>
+        // Transaksi WA (Ganti nomor di bawah ini)
+        function beli(namaProduk, harga) {
+            const noWa = '628980335573'; // <-- GANTI NOMOR WA LU DI SINI
+            const pesan = `Halo Semesta Digital Store,\n\nSaya mau order:\n*${namaProduk}*\nHarga: Rp ${harga.toLocaleString('id-ID')},\n\nTolong kirimkan Nomor Rekening / QRIS untuk transaksi pembayaran.`;
+            const url = `https://wa.me/${noWa}?text=${encodeURIComponent(pesan)}`;
+            window.open(url, '_blank');
+        }
+
+        // Filter Kategori
+        function filterData(kategori) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                if (kategori === 'all' || card.getAttribute('data-category') === kategori) {
+                    card.classList.remove('hide');
+                } else {
+                    card.classList.add('hide');
+                }
+            });
+        }
+
+        // Control Modal Pop-up
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

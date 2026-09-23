@@ -38,7 +38,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            text-align: center;
             padding: 8px 12px;
             background-color: var(--card-bg);
             border: 1px solid #2a2a2a;
@@ -50,7 +49,7 @@
             display: flex; gap: 12px; list-style: none; overflow-x: auto; white-space: nowrap; padding-bottom: 2px;
         }
         .nav-menu::-webkit-scrollbar { display: none; }
-        .nav-menu a { color: var(--text-muted); text-decoration: none; font-size: 0.85em; cursor: pointer; transition: color 0.2s; }
+        .nav-menu a { color: var(--text-muted); text-decoration: none; text-align: center; font-size: 0.85em; cursor: pointer; transition: color 0.2s; }
         .nav-menu a:hover { color: var(--accent); }
 
         /* Header & Logo */
@@ -195,7 +194,7 @@
         <!-- Menu Navigasi Atas -->
         <nav class="topnav">
             <ul class="nav-menu">
-                <li><a href="#katalog">Katalog</a></li>
+          <!--      <li><a href="#katalog">Katalog</a></li> -->
                 <li><a onclick="openModal('modal-cara-order')">Cara Order</a></li>
                 <li><a onclick="openModal('modal-pembayaran')">Info QRIS</a></li>
                 <li><a onclick="openModal('modal-about')">Tentang Kami</a></li>
@@ -246,11 +245,11 @@
     <!-- Footer -->
     <footer>
         <div class="footer-links">
-            <a onclick="openModal('modal-cara-order')">Panduan</a> • 
-            <a onclick="openModal('modal-pembayaran')">QRIS</a> • 
+         <!--   <a onclick="openModal('modal-cara-order')">Panduan</a> • 
+            <a onclick="openModal('modal-pembayaran')">QRIS</a> • -->
             <a onclick="openModal('modal-about')">Tentang</a> • 
             <a onclick="openModal('modal-disclaimer')">Disclaimer</a> • 
-            <a onclick="openModal('modal-privacy')">Privasi</a>
+            <a onclick="openModal('modal-privacy')">Kebijakan Privasi</a>
         </div>
         <p>&copy; 2026 Semesta Digital Store.</p>
     </footer>

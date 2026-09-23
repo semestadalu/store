@@ -319,17 +319,12 @@
         </div>
     </div>
 
+
+<!-- Panggil Database JS Lu di sini -->
+    <script src="produk.js"></script>
+
     <script>
         const noWa = '628980335573'; 
-
-        // Database JSON Produk
-        const dataProduk = [
-            { kategoriID: "web", labelKategori: "Web Tools", nama: "Sistem Manajemen UMKM Instan", deskripsi: "Web app berbasis HTML/JS siap pakai untuk rekap data. Ringan dan siap hosting gratis.", harga: 100000, gambar: "web-tool.jpg" },
-            { kategoriID: "template", labelKategori: "Template", nama: "Dark Aesthetic Post Template", deskripsi: "Kumpulan 50 desain post IG format dark neumorphic siap edit di Canva & Photoshop.", harga: 50000, gambar: "template.jpg" },
-            { kategoriID: "ebook", labelKategori: "E-Book", nama: "Kitab Copywriting Satir", deskripsi: "Panduan menulis caption nyeleneh dan dark jokes untuk narik perhatian audiens. Format PDF.", harga: 35000, gambar: "ebook.jpg" },
-            { kategoriID: "ebook", labelKategori: "E-Book", nama: "E-Book Belajar Hacker", deskripsi: "Panduan dasar untuk pemula yang ingin terjun ke dunia siber. 100 halaman.", harga: 45000, gambar: "ebook-hacker.jpg" },
-            { kategoriID: "web", labelKategori: "Web Tools", nama: "Script Invoice Otomatis", deskripsi: "Script PHP untuk bikin tagihan otomatis ke klien via WA.", harga: 75000, gambar: "invoice.jpg" }
-        ];
 
         // Fungsi Render JS dengan Logika LIMIT & FILTER
         function renderProduk(kategoriAktif = 'all') {
@@ -377,7 +372,7 @@
 
         // Fungsi Transaksi WA
         function beli(namaProduk, harga) {
-            const pesan = `Halo Semesta Digital Store,\n\nSaya mau order:\n*${namaProduk}*\nHarga: Rp ${harga.toLocaleString('id-ID')},\n\nInfo Nomor Rekening / QRIS untuk transaksi pembayaran.`;
+            const pesan = `Halo Semesta Digital Store,\n\nSaya mau order:\n*${namaProduk}*\nHarga: Rp ${harga.toLocaleString('id-ID')},\n\nTolong kirimkan Nomor Rekening / QRIS untuk transaksi pembayaran.`;
             const url = `https://wa.me/${noWa}?text=${encodeURIComponent(pesan)}`;
             window.open(url, '_blank');
         }

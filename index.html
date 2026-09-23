@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Katalog | Semesta Digital Store</title>
 
-    <!-- Favicon Logo Store (sekarang diarahkan ke folder assets) -->
+    <!-- Favicon Logo Store (SUDAH DIPERBAIKI JALURNYA) -->
     <link rel="icon" type="image/jpeg" href="assets/store_logo.jpg">
 
     <style>
@@ -67,7 +67,7 @@
         /* Header & Logo */
         .header { text-align: center; margin-bottom: 30px; }
         .logo-store {
-            width: 120px;
+            width: 120px; /* INI UKURAN LOGONYA COK (120 Pixel) */
             height: 120px;
             object-fit: cover;
             border-radius: 16px;
@@ -292,7 +292,7 @@
         </nav>
 
         <div class="header" id="katalog">
-            <!-- Logo diarahkan ke folder assets -->
+            <!-- LOGO UTAMA (SUDAH DIPERBAIKI JALURNYA KE ASSETS) -->
             <img src="assets/store_logo.jpg" alt="Logo Semesta Digital Store" class="logo-store">
             <h1>Semesta Digital Store</h1>
             <p>Katalog Produk Digital: Script, Web Tools, Template & E-Book.</p>
@@ -363,7 +363,7 @@
             
             <div style="background: #252525; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px dashed var(--accent);">
                 <p style="color: var(--text-main); font-weight: bold; margin-bottom: 10px;">SCAN QRIS DIBAWAH INI:</p>
-                <!-- Gambar QRIS diarahkan ke folder assets -->
+                <!-- GAMBAR QRIS (SUDAH DIPERBAIKI JALURNYA KE ASSETS) -->
                 <img src="assets/qris.jpg" alt="QRIS Semesta Digital Store" style="max-width: 250px; width: 100%; border-radius: 8px; border: 2px solid #fff;">
                 <p style="font-size: 0.85em; margin-top: 10px; color: var(--accent);">Support: ShopeePay, GoPay, DANA, OVO, BCA, Mandiri, dll.</p>
             </div>
@@ -415,8 +415,7 @@
                 nama: "Sistem Manajemen UMKM Instan",
                 deskripsi: "Web app berbasis HTML/JS siap pakai untuk rekap data. Ringan dan siap hosting gratis.",
                 harga: 100000,
-                // Gambar diarahkan ke folder assets
-                gambar: "assets/web-tool.jpg"
+                gambar: "assets/web-tool.jpg" // SUDAH DIPERBAIKI
             },
             {
                 kategoriID: "template",
@@ -424,7 +423,7 @@
                 nama: "Dark Aesthetic Post Template",
                 deskripsi: "Kumpulan 50 desain post IG format dark neumorphic siap edit di Canva & Photoshop.",
                 harga: 50000,
-                gambar: "assets/template.jpg"
+                gambar: "assets/template.jpg" // SUDAH DIPERBAIKI
             },
             {
                 kategoriID: "ebook",
@@ -432,7 +431,7 @@
                 nama: "Kitab Copywriting Satir",
                 deskripsi: "Panduan menulis caption nyeleneh dan dark jokes untuk narik perhatian audiens. Format PDF.",
                 harga: 35000,
-                gambar: "assets/ebook.jpg"
+                gambar: "assets/ebook.jpg" // SUDAH DIPERBAIKI
             }
         ];
 
@@ -469,7 +468,7 @@
         // 3. FUNGSI TRANSAKSI WA ASLI
         // ==========================================
         function beli(namaProduk, harga) {
-            const noWa = '628980335573'; // Nomor sesuai kode asli lu
+            const noWa = '628980335573'; 
             const pesan = `Halo Semesta Digital Store,\n\nSaya mau order:\n*${namaProduk}*\nHarga: Rp ${harga.toLocaleString('id-ID')},\n\nTolong kirimkan Nomor Rekening / QRIS untuk transaksi pembayaran.`;
             const url = `https://wa.me/${noWa}?text=${encodeURIComponent(pesan)}`;
             window.open(url, '_blank');

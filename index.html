@@ -33,12 +33,12 @@
 
         .container { max-width: 1100px; margin: 0 auto; width: 100%; flex-grow: 1; }
 
-        /* Menu Navigasi Atas */
+        /* Menu Navigasi Atas ala App Mobile */
         .topnav {
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* Diubah jadi center cok */
             align-items: center;
-            padding: 8px 12px;
+            padding: 12px; /* Margin dalemnya disesuaiin dikit biar pas */
             background-color: var(--card-bg);
             border: 1px solid #2a2a2a;
             border-radius: 12px;
@@ -46,10 +46,17 @@
         }
         .nav-brand { font-weight: bold; font-size: 1em; color: var(--accent); text-decoration: none; white-space: nowrap; }
         .nav-menu {
-            display: flex; gap: 12px; list-style: none; overflow-x: auto; white-space: nowrap; padding-bottom: 2px;
+            display: flex; 
+            justify-content: center; /* Tambahan wajib biar teks rata tengah */
+            width: 100%; /* Wajib 100% biar dia ngisi tengahnya */
+            gap: 20px; /* Jarak antar menu gue lebarin dikit biar nggak dempet */
+            list-style: none; 
+            overflow-x: auto; 
+            white-space: nowrap; 
+            padding-bottom: 2px;
         }
         .nav-menu::-webkit-scrollbar { display: none; }
-        .nav-menu a { color: var(--text-muted); text-decoration: none; text-align: center; font-size: 0.85em; cursor: pointer; transition: color 0.2s; }
+        .nav-menu a { color: var(--text-muted); text-decoration: none; font-size: 0.85em; cursor: pointer; transition: color 0.2s; }
         .nav-menu a:hover { color: var(--accent); }
 
         /* Header & Logo */
@@ -246,7 +253,7 @@
     <footer>
         <div class="footer-links">
          <!--   <a onclick="openModal('modal-cara-order')">Panduan</a> • 
-            <a onclick="openModal('modal-pembayaran')">QRIS</a> • -->
+            <a onclick="openModal('modal-pembayaran')">QRIS</a> •  -->
             <a onclick="openModal('modal-about')">Tentang</a> • 
             <a onclick="openModal('modal-disclaimer')">Disclaimer</a> • 
             <a onclick="openModal('modal-privacy')">Kebijakan Privasi</a>

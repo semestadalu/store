@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Katalog | Semesta Digital Store</title>
 
-    <!-- Favicon Logo Store -->
-    <link rel="icon" type="image/jpeg" href="store_logo.jpg">
+    <!-- Favicon Logo Store (sekarang diarahkan ke folder assets) -->
+    <link rel="icon" type="image/jpeg" href="assets/store_logo.jpg">
 
     <style>
         :root {
@@ -286,13 +286,14 @@
             <ul class="nav-menu">
                 <li><a href="#katalog">Katalog</a></li>
                 <li><a onclick="openModal('modal-cara-order')">Cara Order</a></li>
-                <a onclick="openModal('modal-pembayaran')">Info Pembayaran</a>
+                <li><a onclick="openModal('modal-pembayaran')">Info Pembayaran</a></li>
                 <li><a onclick="openModal('modal-about')">Tentang Kami</a></li>
             </ul>
         </nav>
 
         <div class="header" id="katalog">
-            <img src="store_logo.jpg" alt="Logo Semesta Digital Store" class="logo-store">
+            <!-- Logo diarahkan ke folder assets -->
+            <img src="assets/store_logo.jpg" alt="Logo Semesta Digital Store" class="logo-store">
             <h1>Semesta Digital Store</h1>
             <p>Katalog Produk Digital: Script, Web Tools, Template & E-Book.</p>
         </div>
@@ -322,56 +323,11 @@
             <button class="filter-btn" onclick="filterData('ebook')">E-Book & Hiburan</button>
             <button class="filter-btn" onclick="filterData('template')">Template UI/UX</button>
             <button class="filter-btn" onclick="filterData('web')">Web Tools & Script</button>
-            
         </div>
 
+        <!-- AREA GRID PRODUK: Akan diisi otomatis oleh Javascript JSON -->
         <div class="grid" id="product-grid">
-            
-            <!-- PRODUK 1 -->
-            <div class="card" data-category="web">
-                <img src="web-tool.jpg" alt="Web Tool" class="card-img">
-                <div class="card-content">
-                    <span class="badge">Web Tools</span>
-                    <h3>Sistem Manajemen UMKM Instan</h3>
-                    <p>Web app berbasis HTML/JS siap pakai untuk rekap data. Ringan dan siap hosting gratis.</p>
-                    <div class="price">Rp 100.000</div>
-                    <button class="buy-btn" onclick="beli('Sistem Manajemen UMKM', 100000)">
-                        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        Beli via WhatsApp
-                    </button>
-                </div>
-            </div>
-
-            <!-- PRODUK 2 -->
-            <div class="card" data-category="template">
-                <img src="template.jpg" alt="Template IG" class="card-img">
-                <div class="card-content">
-                    <span class="badge">Template</span>
-                    <h3>Dark Aesthetic Post Template</h3>
-                    <p>Kumpulan 50 desain post IG format dark neumorphic siap edit di Canva & Photoshop.</p>
-                    <div class="price">Rp 50.000</div>
-                    <button class="buy-btn" onclick="beli('Dark Aesthetic Post Template', 50000)">
-                        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        Beli via WhatsApp
-                    </button>
-                </div>
-            </div>
-
-            <!-- PRODUK 3 -->
-            <div class="card" data-category="ebook">
-                <img src="ebook.jpg" alt="E-Book" class="card-img">
-                <div class="card-content">
-                    <span class="badge">E-Book</span>
-                    <h3>Kitab Copywriting Satir</h3>
-                    <p>Panduan menulis caption nyeleneh dan dark jokes untuk narik perhatian audiens. Format PDF.</p>
-                    <div class="price">Rp 35.000</div>
-                    <button class="buy-btn" onclick="beli('Kitab Copywriting Satir', 35000)">
-                        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        Beli via WhatsApp
-                    </button>
-                </div>
-            </div>
-
+            <!-- Data produk di-render di sini -->
         </div>
     </div>
 
@@ -398,7 +354,7 @@
         </div>
     </div>
 
-<!-- MODAL PEMBAYARAN (QRIS / REKENING) -->
+    <!-- MODAL PEMBAYARAN (QRIS / REKENING) -->
     <div id="modal-pembayaran" class="modal">
         <div class="modal-content" style="text-align: center;">
             <button class="close-btn" onclick="closeModal('modal-pembayaran')">&times;</button>
@@ -407,8 +363,8 @@
             
             <div style="background: #252525; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px dashed var(--accent);">
                 <p style="color: var(--text-main); font-weight: bold; margin-bottom: 10px;">SCAN QRIS DIBAWAH INI:</p>
-                <!-- Upload gambar QRIS ShopeePay lu ke GitHub, beri nama qris.jpg -->
-                <img src="qris.jpg" alt="QRIS Semesta Digital Store" style="max-width: 250px; width: 100%; border-radius: 8px; border: 2px solid #fff;">
+                <!-- Gambar QRIS diarahkan ke folder assets -->
+                <img src="assets/qris.jpg" alt="QRIS Semesta Digital Store" style="max-width: 250px; width: 100%; border-radius: 8px; border: 2px solid #fff;">
                 <p style="font-size: 0.85em; margin-top: 10px; color: var(--accent);">Support: ShopeePay, GoPay, DANA, OVO, BCA, Mandiri, dll.</p>
             </div>
             
@@ -449,15 +405,79 @@
     </div>
 
     <script>
-        // Transaksi WA (Ganti nomor di bawah ini)
+        // ==========================================
+        // 1. DATA PRODUK JSON (Tambah Produk Di Sini)
+        // ==========================================
+        const dataProduk = [
+            {
+                kategoriID: "web",
+                labelKategori: "Web Tools",
+                nama: "Sistem Manajemen UMKM Instan",
+                deskripsi: "Web app berbasis HTML/JS siap pakai untuk rekap data. Ringan dan siap hosting gratis.",
+                harga: 100000,
+                // Gambar diarahkan ke folder assets
+                gambar: "assets/web-tool.jpg"
+            },
+            {
+                kategoriID: "template",
+                labelKategori: "Template",
+                nama: "Dark Aesthetic Post Template",
+                deskripsi: "Kumpulan 50 desain post IG format dark neumorphic siap edit di Canva & Photoshop.",
+                harga: 50000,
+                gambar: "assets/template.jpg"
+            },
+            {
+                kategoriID: "ebook",
+                labelKategori: "E-Book",
+                nama: "Kitab Copywriting Satir",
+                deskripsi: "Panduan menulis caption nyeleneh dan dark jokes untuk narik perhatian audiens. Format PDF.",
+                harga: 35000,
+                gambar: "assets/ebook.jpg"
+            }
+        ];
+
+        // ==========================================
+        // 2. FUNGSI RENDER PRODUK OTOMATIS
+        // ==========================================
+        function renderProduk() {
+            const grid = document.getElementById("product-grid");
+            let htmlKatalog = "";
+
+            dataProduk.forEach(produk => {
+                htmlKatalog += `
+                <div class="card" data-category="${produk.kategoriID}">
+                    <img src="${produk.gambar}" alt="${produk.nama}" class="card-img" onerror="this.src='https://placehold.co/600x400/1e1e1e/f5b700?text=Semesta+Digital'">
+                    <div class="card-content">
+                        <span class="badge">${produk.labelKategori}</span>
+                        <h3>${produk.nama}</h3>
+                        <p>${produk.deskripsi}</p>
+                        <div class="price">Rp ${produk.harga.toLocaleString('id-ID')}</div>
+                        <button class="buy-btn" onclick="beli('${produk.nama}', ${produk.harga})">
+                            <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                            Beli via WhatsApp
+                        </button>
+                    </div>
+                </div>`;
+            });
+            grid.innerHTML = htmlKatalog;
+        }
+
+        // Panggil render saat halaman dimuat
+        renderProduk();
+
+        // ==========================================
+        // 3. FUNGSI TRANSAKSI WA ASLI
+        // ==========================================
         function beli(namaProduk, harga) {
-            const noWa = '628980335573'; // <-- GANTI NOMOR WA LU DI SINI
+            const noWa = '628980335573'; // Nomor sesuai kode asli lu
             const pesan = `Halo Semesta Digital Store,\n\nSaya mau order:\n*${namaProduk}*\nHarga: Rp ${harga.toLocaleString('id-ID')},\n\nTolong kirimkan Nomor Rekening / QRIS untuk transaksi pembayaran.`;
             const url = `https://wa.me/${noWa}?text=${encodeURIComponent(pesan)}`;
             window.open(url, '_blank');
         }
 
-        // Filter Kategori
+        // ==========================================
+        // 4. FUNGSI FILTER KATEGORI & MODALS
+        // ==========================================
         function filterData(kategori) {
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
@@ -473,7 +493,6 @@
             });
         }
 
-        // Control Modal Pop-up
         function openModal(modalId) {
             document.getElementById(modalId).style.display = 'flex';
         }

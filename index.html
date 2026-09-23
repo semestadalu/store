@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <!-- Kunci layar biar nggak bisa di-zoom aneh-aneh (App feel) -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Katalog | Semesta Digital Store</title>
 
-    <!-- Favicon Logo Store (SUDAH DIPERBAIKI JALURNYA) -->
-    <link rel="icon" type="image/jpeg" href="assets/store_logo.jpg">
+    <!-- Favicon Logo Store -->
+    <link rel="icon" type="image/jpeg" href="store_logo.jpg">
 
     <style>
         :root {
@@ -32,7 +33,7 @@
 
         .container { max-width: 1100px; margin: 0 auto; width: 100%; flex-grow: 1; }
 
-        /* Menu Navigasi Atas */
+        /* Menu Navigasi Atas (Desktop) */
         .topnav {
             display: flex;
             justify-content: space-between;
@@ -67,7 +68,7 @@
         /* Header & Logo */
         .header { text-align: center; margin-bottom: 30px; }
         .logo-store {
-            width: 120px; /* INI UKURAN LOGONYA COK (120 Pixel) */
+            width: 120px;
             height: 120px;
             object-fit: cover;
             border-radius: 16px;
@@ -78,7 +79,7 @@
         .header h1 { font-size: 2.2em; letter-spacing: 1px; margin-bottom: 5px; }
         .header p { color: var(--text-muted); font-size: 1.1em; }
 
-        /* Kotak Panduan Cara Order (Step-by-step) */
+        /* Kotak Panduan Cara Order */
         .how-to-buy {
             background-color: var(--card-bg);
             border: 1px solid #2a2a2a;
@@ -124,6 +125,7 @@
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.2s;
+            white-space: nowrap; /* Teks tidak turun baris */
         }
         .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
         .filter-btn.active {
@@ -133,14 +135,12 @@
             font-weight: bold;
         }
 
-        /* Grid Produk (Mobile Responsif) */
+        /* Grid Produk */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 30px;
         }
-
-        /* Card Produk */
         .card {
             background: var(--card-bg);
             border-radius: 12px;
@@ -152,14 +152,12 @@
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
         .card:hover { transform: translateY(-5px); border-color: var(--accent); }
-
         .card-img {
             width: 100%;
             height: 200px;
             object-fit: cover;
             border-bottom: 1px solid #2a2a2a;
         }
-
         .card-content {
             padding: 20px;
             display: flex;
@@ -181,8 +179,7 @@
         .card h3 { font-size: 1.3em; margin-bottom: 10px; line-height: 1.3; }
         .card p { color: var(--text-muted); font-size: 0.9em; margin-bottom: 20px; flex-grow: 1; line-height: 1.5; }
         .price { font-size: 1.5em; color: var(--accent); font-weight: bold; margin-bottom: 15px; }
-
-        /* Tombol Beli dengan Ikon Keranjang */
+        
         .buy-btn {
             background-color: var(--accent);
             color: #000;
@@ -199,17 +196,10 @@
             gap: 8px;
             transition: all 0.2s;
         }
-        .buy-btn svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
-        .buy-btn:hover {
-            opacity: 0.85;
-            box-shadow: 0 0 10px rgba(245, 183, 0, 0.4);
-        }
+        .buy-btn svg { width: 18px; height: 18px; fill: currentColor; }
+        .buy-btn:hover { opacity: 0.85; box-shadow: 0 0 10px rgba(245, 183, 0, 0.4); }
 
-        /* Footer & Trust Badges */
+        /* Footer */
         footer {
             margin-top: 60px;
             padding-top: 20px;
@@ -225,56 +215,89 @@
             margin-bottom: 15px;
             flex-wrap: wrap;
         }
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
+        .footer-links a { color: var(--text-muted); text-decoration: none; cursor: pointer; transition: color 0.2s; }
         .footer-links a:hover { color: var(--accent); }
 
-        /* Modal Styles */
+        /* Modal Styles (Tetap sama) */
         .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8); align-items: center; justify-content: center; padding: 20px;
         }
         .modal-content {
-            background-color: var(--card-bg);
-            border: 1px solid var(--accent);
-            border-radius: 12px;
-            max-width: 600px;
-            width: 100%;
-            padding: 25px;
-            position: relative;
-            max-height: 80vh;
-            overflow-y: auto;
-            color: var(--text-main);
-            box-shadow: var(--shadow);
+            background-color: var(--card-bg); border: 1px solid var(--accent); border-radius: 12px;
+            max-width: 600px; width: 100%; padding: 25px; position: relative; max-height: 80vh;
+            overflow-y: auto; color: var(--text-main); box-shadow: var(--shadow);
         }
         .modal-content h2 { color: var(--accent); margin-bottom: 15px; }
         .modal-content p { color: var(--text-muted); font-size: 0.9em; line-height: 1.6; margin-bottom: 12px; }
         .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            color: var(--text-muted);
-            font-size: 1.5em;
-            cursor: pointer;
-            border: none;
-            background: none;
+            position: absolute; top: 15px; right: 15px; color: var(--text-muted); font-size: 1.5em;
+            cursor: pointer; border: none; background: none;
         }
         .close-btn:hover { color: var(--accent); }
-
         .hide { display: none !important; }
+
+        /* ========================================================= */
+        /* OPTIMASI TAMPILAN KHUSUS LAYAR HP (MOBILE APP FEEL)       */
+        /* ========================================================= */
+        @media (max-width: 768px) {
+            body { padding: 12px; }
+            
+            /* Navbar jadi horizontal scroll / chip style di HP */
+            .topnav { 
+                flex-direction: column; 
+                padding: 5px 0 15px 0; 
+                margin-bottom: 15px; 
+                border-bottom: none; 
+            }
+            .nav-brand { margin-bottom: 15px; }
+            .nav-menu {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                width: 100%;
+                justify-content: flex-start;
+                padding-bottom: 10px;
+                gap: 10px;
+                -webkit-overflow-scrolling: touch; /* Biar scrollnya mulus kayak app */
+            }
+            .nav-menu::-webkit-scrollbar { display: none; } /* Hilangkan garis scrollbar */
+            .nav-menu a {
+                background: #252525;
+                padding: 6px 14px;
+                border-radius: 20px;
+                font-size: 0.85em;
+                white-space: nowrap;
+            }
+
+            /* Header & Logo diperkecil */
+            .header { margin-bottom: 20px; }
+            .logo-store { width: 85px; height: 85px; border-radius: 12px; margin-bottom: 10px; }
+            .header h1 { font-size: 1.6em; }
+            .header p { font-size: 0.9em; }
+
+            /* Sembunyikan Panel Cara Transaksi yang kebesaran */
+            .how-to-buy { display: none; }
+
+            /* Kategori Filter bisa di-scroll ke samping */
+            .category-filters {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding-bottom: 10px;
+                margin-bottom: 20px;
+                gap: 8px;
+                -webkit-overflow-scrolling: touch;
+            }
+            .category-filters::-webkit-scrollbar { display: none; }
+            .filter-btn { padding: 6px 14px; font-size: 0.85em; }
+
+            /* Jarak Card Produk & Footer */
+            .grid { gap: 15px; }
+            .card-content { padding: 15px; }
+            
+            footer { margin-top: 30px; padding-top: 15px; }
+            .footer-links { font-size: 0.9em; gap: 10px; }
+        }
     </style>
 </head>
 <body>
@@ -292,13 +315,12 @@
         </nav>
 
         <div class="header" id="katalog">
-            <!-- LOGO UTAMA (SUDAH DIPERBAIKI JALURNYA KE ASSETS) -->
-            <img src="assets/store_logo.jpg" alt="Logo Semesta Digital Store" class="logo-store">
+            <img src="store_logo.jpg" alt="Logo Semesta Digital Store" class="logo-store">
             <h1>Semesta Digital Store</h1>
             <p>Katalog Produk Digital: Script, Web Tools, Template & E-Book.</p>
         </div>
 
-        <!-- Panduan Ringkas Cara Order di Halaman Utama -->
+        <!-- Panduan Ringkas Cara Order di Halaman Utama (Akan otomatis sembunyi di HP) -->
         <div class="how-to-buy">
             <h3>📖 Cara Transaksi Cepat & Aman:</h3>
             <div class="steps-grid">
@@ -363,8 +385,7 @@
             
             <div style="background: #252525; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px dashed var(--accent);">
                 <p style="color: var(--text-main); font-weight: bold; margin-bottom: 10px;">SCAN QRIS DIBAWAH INI:</p>
-                <!-- GAMBAR QRIS (SUDAH DIPERBAIKI JALURNYA KE ASSETS) -->
-                <img src="assets/qris.jpg" alt="QRIS Semesta Digital Store" style="max-width: 250px; width: 100%; border-radius: 8px; border: 2px solid #fff;">
+                <img src="qris.jpg" alt="QRIS Semesta Digital Store" style="max-width: 250px; width: 100%; border-radius: 8px; border: 2px solid #fff;">
                 <p style="font-size: 0.85em; margin-top: 10px; color: var(--accent);">Support: ShopeePay, GoPay, DANA, OVO, BCA, Mandiri, dll.</p>
             </div>
             
@@ -415,7 +436,7 @@
                 nama: "Sistem Manajemen UMKM Instan",
                 deskripsi: "Web app berbasis HTML/JS siap pakai untuk rekap data. Ringan dan siap hosting gratis.",
                 harga: 100000,
-                gambar: "assets/web-tool.jpg" // SUDAH DIPERBAIKI
+                gambar: "web-tool.jpg"
             },
             {
                 kategoriID: "template",
@@ -423,7 +444,7 @@
                 nama: "Dark Aesthetic Post Template",
                 deskripsi: "Kumpulan 50 desain post IG format dark neumorphic siap edit di Canva & Photoshop.",
                 harga: 50000,
-                gambar: "assets/template.jpg" // SUDAH DIPERBAIKI
+                gambar: "template.jpg"
             },
             {
                 kategoriID: "ebook",
@@ -431,7 +452,7 @@
                 nama: "Kitab Copywriting Satir",
                 deskripsi: "Panduan menulis caption nyeleneh dan dark jokes untuk narik perhatian audiens. Format PDF.",
                 harga: 35000,
-                gambar: "assets/ebook.jpg" // SUDAH DIPERBAIKI
+                gambar: "ebook.jpg"
             }
         ];
 
@@ -468,7 +489,7 @@
         // 3. FUNGSI TRANSAKSI WA ASLI
         // ==========================================
         function beli(namaProduk, harga) {
-            const noWa = '628980335573'; 
+            const noWa = '628980335573'; // Nomor sesuai kode asli lu
             const pesan = `Halo Semesta Digital Store,\n\nSaya mau order:\n*${namaProduk}*\nHarga: Rp ${harga.toLocaleString('id-ID')},\n\nTolong kirimkan Nomor Rekening / QRIS untuk transaksi pembayaran.`;
             const url = `https://wa.me/${noWa}?text=${encodeURIComponent(pesan)}`;
             window.open(url, '_blank');

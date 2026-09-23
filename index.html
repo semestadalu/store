@@ -269,7 +269,9 @@
     <div class="container">
         <!-- Menu Navigasi Atas ala App Mobile -->
         <nav class="topnav">
+         <!--   <a href="#" class="nav-brand">⚡ Semesta Digital</a>  -->
             <ul class="nav-menu">
+                <li><a href="#katalog">Katalog</a></li>
                 <li><a onclick="openModal('modal-cara-order')">Cara Order</a></li>
                 <li><a onclick="openModal('modal-pembayaran')">Info QRIS</a></li>
                 <li><a onclick="openModal('modal-about')">Tentang Kami</a></li>
@@ -290,25 +292,25 @@
             <div class="steps-grid">
                 <div class="step-item">
                     <strong>1. Pilih Produk</strong>
-                    Tekan tombol keranjang "Beli via WhatsApp" pada produk pilihan lu.
+                    Tekan tombol keranjang "Beli via WhatsApp" pada produk pilihan lu. Otomatis terhubung ke chat admin.
                 </div>
                 <div class="step-item">
                     <strong>2. Lakukan Pembayaran</strong>
-                    Transfer via Bank atau scan QRIS toko, lalu kirim bukti transfer.
+                    Transaksi via Transfer Bank atau scan QRIS toko. Kirim bukti transfer (*screenshot*) ke chat.
                 </div>
                 <div class="step-item">
                     <strong>3. File Dikirim Instan</strong>
-                    Setelah dana terkonfirmasi, link download file langsung dikirim.
+                    Setelah dana terkonfirmasi, link download file produk digital akan langsung dikirim.
                 </div>
             </div>
         </div>
 
         <!-- Tombol Filter (Bisa digeser/swipe di HP) -->
         <div class="category-filters">
-            <button class="filter-btn active" onclick="filterData('all')">Semua</button>
-            <button class="filter-btn" onclick="filterData('web')">Web Tools</button>
-            <button class="filter-btn" onclick="filterData('template')">Template</button>
-            <button class="filter-btn" onclick="filterData('ebook')">E-Book</button>
+            <button class="filter-btn active" onclick="filterData('all')">Semua Produk</button>
+            <button class="filter-btn" onclick="filterData('ebook')">E-Book & Hiburan</button>
+            <button class="filter-btn" onclick="filterData('template')">Template UI/UX</button>
+            <button class="filter-btn" onclick="filterData('web')">Web Tools & Script</button>            
         </div>
 
         <!-- WADAH PRODUK DINAMIS (JSON) -->
@@ -331,11 +333,11 @@
     <div id="modal-cara-order" class="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('modal-cara-order')">&times;</button>
-            <h2>Panduan Cara Order</h2>
-            <p>1. <strong>Pilih Barang:</strong> Cari produk digital di katalog.</p>
-            <p>2. <strong>Hubungi Admin:</strong> Klik tombol <em>"Beli via WhatsApp"</em> untuk terhubung otomatis.</p>
-            <p>3. <strong>Pembayaran:</strong> Lakukan transfer atau scan QRIS resmi toko.</p>
-            <p>4. <strong>Pengiriman:</strong> Kirim bukti transfer, file dikirim detik itu juga.</p>
+            <h2>Panduan Lengkap Cara Order</h2>
+            <p>1. <strong>Pilih Barang:</strong> Cari produk digital yang lu butuhkan di halaman utama katalog.</p>
+            <p>2. <strong>Hubungi Admin:</strong> Klik tombol ikon keranjang <em>"Beli via WhatsApp"</em>. Otomatis lu akan diarahkan ke aplikasi WhatsApp dengan pesan format otomatis berisi nama produk dan harganya.</p>
+            <p>3. <strong>Pembayaran:</strong> Admin akan memberikan instruksi pembayaran (Transfer Bank atau QRIS resmi).</p>
+            <p>4. <strong>Konfirmasi & Pengiriman:</strong> Kirim bukti transfer. File aset digital (berupa link Google Drive, ZIP, atau PDF) akan langsung dikirimkan ke chat WhatsApp lu dalam hitungan menit.</p>
         </div>
     </div>
 
@@ -343,8 +345,8 @@
     <div id="modal-pembayaran" class="modal">
         <div class="modal-content" style="text-align: center;">
             <button class="close-btn" onclick="closeModal('modal-pembayaran')">&times;</button>
-            <h2>Metode Pembayaran</h2>
-            <p>Support QRIS (ShopeePay, GoPay, DANA, OVO, m-Banking) & Transfer Bank.</p>
+            <h2>Metode Pembayaran Resmi</h2>
+            <p>Semesta Digital Store mendukung pembayaran instan via QRIS (ShopeePay, GoPay, DANA, OVO, m-Banking) & Transfer Bank.</p>
             
             <div style="background: #252525; padding: 15px; border-radius: 8px; margin: 15px 0; border: 1px dashed var(--accent);">
                 <p style="color: var(--text-main); font-weight: bold; margin-bottom: 8px; font-size: 0.9em;">SCAN QRIS DIBAWAH:</p>
@@ -359,7 +361,8 @@
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('modal-about')">&times;</button>
             <h2>Tentang Kami</h2>
-            <p><strong>Semesta Digital Store</strong> adalah platform penyedia produk digital terpercaya (web script, template, dan e-book) bergaransi aman via WhatsApp.</p>
+            <p><strong>Semesta Digital Store</strong> adalah platform penyedia produk digital terpercaya yang berfokus pada efisiensi dan fungsionalitas. Kami menyediakan berbagai alat bantu digital seperti web script, template desain premium, dan e-book berkualitas tinggi.</p>
+            <p>Seluruh transaksi dilakukan secara langsung dan transparan melalui konfirmasi WhatsApp untuk menjamin keamanan, kemudahan, dan pengiriman aset digital secara langsung tanpa kendala.</p>
         </div>
     </div>
 
@@ -368,7 +371,9 @@
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('modal-disclaimer')">&times;</button>
             <h2>Penafian (Disclaimer)</h2>
-            <p>Produk bersifat non-fisik (non-refundable). Dilarang menyebarluaskan atau menjual kembali file tanpa izin.</p>
+            <p>1. <strong>Sifat Produk Digital:</strong> Seluruh produk yang dijual berbentuk aset non-fisik (file digital/source code). Harap baca deskripsi produk dengan cermat sebelum melakukan pembayaran.</p>
+            <p>2. <strong>Kebijakan Pengembalian:</strong> Karena sifat produk digital yang langsung dapat diakses setelah dikirimkan, kami tidak melayani pengembalian dana (non-refundable) kecuali terjadi kesalahan pengiriman file dari pihak kami.</p>
+            <p>3. <strong>Penggunaan Produk:</strong> Produk yang dibeli dilarang untuk didistribusikan ulang atau dijual kembali tanpa izin tertulis dari Semesta Digital Store.</p>
         </div>
     </div>
 
@@ -377,7 +382,9 @@
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('modal-privacy')">&times;</button>
             <h2>Kebijakan Privasi</h2>
-            <p>Data pribadi Anda (nomor WA) dijamin aman dan hanya digunakan untuk pemrosesan pesanan.</p>
+            <p>1. <strong>Pengumpulan Data:</strong> Kami menghormati privasi Anda. Kami hanya mengumpulkan informasi dasar (seperti nomor WhatsApp dan nama) yang Anda berikan saat melakukan transaksi langsung.</p>
+            <p>2. <strong>Penggunaan Data:</strong> Informasi Anda hanya digunakan untuk pemrosesan pesanan, pengiriman file produk digital, dan layanan bantuan pelanggan.</p>
+            <p>3. <strong>Keamanan Data:</strong> Kami menjamin tidak akan pernah menjual, menyewakan, atau membagikan data pribadi Anda kepada pihak ketiga mana pun.</p>
         </div>
     </div>
 

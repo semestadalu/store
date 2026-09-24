@@ -1,6 +1,4 @@
 const dataProduk = [
-    { kategoriID: "web", labelKategori: "Web Tools", nama: "Untitled", deskripsi: "Untitled", harga: 0, gambar: "web-tool.jpg" },
-    { kategoriID: "template", labelKategori: "Template", nama: "Untitled", deskripsi: "Untitled", harga: 0, gambar: "template.jpg" },
     { kategoriID: "ebook", labelKategori: "E-Book & Hiburan", nama: "Creator Blueprint", deskripsi: "Formula Copywriting FYP & Kit Bio-Link Cuan untuk narik perhatian audiens. Format PDF.", harga: 25000, gambar: "ebook1.jpg" },
     { kategoriID: "ebook", labelKategori: "E-Book & Hiburan", nama: "Kalkulator & Pelacak Keuangan", deskripsi: "Financial Survival Kit buat ngatur duit lu biar nggak bokek. Format PDF-include bonus CSV, File RAR", harga: 30000, gambar: "ebook2.jpg" },
     { kategoriID: "ebook", labelKategori: "E-Book & Hiburan", nama: "Microblog Mastery", deskripsi: "Template Konten Edukasi buat lu yang pemilik online shop, content creator, dan agensi kecil yang lagi butuh kepraktisan desain. Format PDF", harga: 25000, gambar: "ebook3.jpg" },

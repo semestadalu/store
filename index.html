@@ -172,8 +172,27 @@
         .badge { align-self: flex-start; background-color: #252525; color: var(--accent); font-size: 0.75em; padding: 4px 8px; border-radius: 4px; margin-bottom: 10px; text-transform: uppercase; font-weight: bold; }
         .card h3 { font-size: 1.15em; margin-bottom: 8px; line-height: 1.3; }
         .card p { color: var(--text-muted); font-size: 0.85em; margin-bottom: 15px; flex-grow: 1; line-height: 1.5; }
-        .price { font-size: 1.3em; color: var(--accent); font-weight: bold; margin-bottom: 15px; }
-
+        .price { font-size: 1.3em; color: var(--accent); font-weight: bold; margin-bottom: 15px; margin-top: auto; }
+/* List Keterangan Fitur Baru */
+        .fitur-list {
+            list-style: none;
+            margin-top: -5px;
+            margin-bottom: 20px;
+            font-size: 0.8em;
+            color: var(--text-muted);
+        }
+        .fitur-list li {
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .fitur-list li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
         .buy-btn {
             background-color: var(--accent); color: #000; border: none; padding: 12px; border-radius: 6px;
             font-size: 0.95em; font-weight: bold; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; transition: opacity 0.2s;

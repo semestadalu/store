@@ -3,7 +3,28 @@ const dataProduk = [
     { kategoriID: "ebook", labelKategori: "E-Book & Hiburan", nama: "Kalkulator & Pelacak Keuangan", deskripsi: "Financial Survival Kit buat ngatur duit lu biar nggak bokek. Include bonus CSV.", keterangan: "E-Book 7 Halaman | Format PDF | File RAR", harga: 30000, gambar: "ebook2.jpg" },
     { kategoriID: "ebook", labelKategori: "E-Book & Hiburan", nama: "Microblog Mastery", deskripsi: "Template Konten Edukasi buat lu yang pemilik online shop, content creator, dan agensi kecil yang lagi butuh kepraktisan desain.", keterangan: "E-Book 7 Halaman | Format PDF | File PDF", harga: 25000, gambar: "ebook3.jpg" },
     { kategoriID: "ebook", labelKategori: "E-Book & Hiburan", nama: "Productivity Dashboard", deskripsi: "Dasbor Produktivitas Harian Berfungsi sebagai all-in-one planner digital yang interaktif dan menghemat waktu manajemen harian pembeli. Include bonus CSV.", keterangan: "E-Book 7 Halaman | Format PDF | File RAR", harga: 30000, gambar: "ebook4.jpg" },
-    { kategoriID: "ebook", labelKategori: "E-Book & Hiburan", nama: "Bundel Persiapan Karir & Rekrutmen", deskripsi: "Template CV ATS biar lolos unutk fresh graduated atau profesianal yang pengen pindah kerja dan pengen hasil instan.", keterangan: "E-Book 7 Halaman | Format PDF | File PDF", harga: 25000, gambar: "ebook5.jpg" }
+    { kategoriID: "ebook", labelKategori: "E-Book & Hiburan", nama: "Bundel Persiapan Karir & Rekrutmen", deskripsi: "Template CV ATS biar lolos unutk fresh graduated atau profesianal yang pengen pindah kerja dan pengen hasil instan.", keterangan: "E-Book 7 Halaman | Format PDF | File PDF", harga: 25000, gambar: "ebook5.jpg" },
+    { kategoriID: "template", 
+    labelKategori: "Template UI/UX", 
+    nama: "Smart Budgeting & Meal Plan Dashboard Pro", 
+    deskripsi: "Tracker keuangan rumah tangga anti-boncos. Tinggal masukin angka, sistem otomatis ngitung sisa jatah belanja & cashflow bulanan lo. Lengkap sama meal plan biar nggak pusing masak apa besok.", 
+    keterangan: "Dashboard 50/30/20 | Log Transaksi | Grocery List | Sinking Funds | File Excel", 
+    harga: 20000, 
+    gambar: "t1.png" },
+    { kategoriID: "template", 
+    labelKategori: "Template UI/UX", 
+    nama: "Side Hustle & Freelance Pro CRM", 
+    deskripsi: "All-in-one workspace buat lo yang nge-freelance atau punya side hustle. Pantau invoice, kejar deadline klien, sampai ngecek laba bersih langsung di satu layar.", 
+    keterangan: "Executive Dashboard | Project Pipeline | Invoice Tracker | Expense Log | File Excel", 
+    harga: 20000, 
+    gambar: "t2.png" },
+    { kategoriID: "template", 
+    labelKategori: "Template UI/UX", 
+    nama: "Ultimate Creator Matrix & SEO Kit", 
+    deskripsi: "Senjata rahasia buat ngonten. Mulai dari brainstorming hook viral, nyusun jadwal postingan, sampai riset hashtag buat naikin engagement, semuanya kumpul di sini.", 
+    keterangan: "Analytics Tracker | Content Matrix | Viral Hook Bank | SEO & Hashtag Vault | File Excel", 
+    harga: 20000, 
+    gambar: "t3.png" }
 
     // NANTI DATA BARU COPAS KE SINI
 ];

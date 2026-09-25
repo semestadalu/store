@@ -365,7 +365,7 @@
             // Render ulang produk berdasarkan kategori
             dataProduk.forEach(produk => {
                 let isMatch = (kategoriAktif === 'all') || (produk.kategoriID === kategoriAktif);
-                let isUnderLimit = (kategoriAktif !== 'all') || (counter < 4);
+                let isUnderLimit = (kategoriAktif !== 'all') || (counter < 100);
 
                 if (isMatch && isUnderLimit) {
                     
